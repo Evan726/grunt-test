@@ -26,13 +26,35 @@ module.exports = function(grunt) {
       }
     },
 
-    // jshint插件信息配置
-    // jshint:{
-    //   build: ['src/test.js'],
-    //   options: {
-    //     jshintrc:'.jshintrc',
-    //   }
-    // }
+    clean: {
+      build: {
+        src: ["dist/js/","dist/main.html"]
+      }
+    },
+    copy: {
+      main: {
+        files: [
+          //{src: ['path/*'], dest: 'dest/', filter: 'isFile'}, // 复制path目录下的所有文件
+          //{src: ['./images/*'], dest: 'dist/'}, // 复制path目录下的所有目录和文件
+          {
+            flatten: true,
+            expand: true,
+            src: ['src/images/*'],
+            dest: 'dist/images/',
+            filter: 'isFile'
+          },
+          {
+            flatten: true,
+            expand: true,
+            src: ['src/index.html'],
+            dest: 'dist/',
+            filter: 'isFile'
+          }
+        ]
+      }
+    },
+
+    
     jshint: {
         options: {
             //大括号包裹
